@@ -1,0 +1,22 @@
+[
+  {
+    "idAmenaza": 5,
+    "tipo": "FENOMENOS CRIMINALES"
+  },
+  {
+    "idAmenaza": 2,
+    "tipo": "GAO"
+  },
+  {
+    "idAmenaza": 3,
+    "tipo": "GAO ELN"
+  },
+  {
+    "idAmenaza": 1,
+    "tipo": "GAO-r"
+  },
+  {
+    "idAmenaza": 4,
+    "tipo": "MEDIOS ABIERTOS"
+  }
+]

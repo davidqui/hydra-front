@@ -1,6 +1,7 @@
 import React,{Component} from 'react'
 import {InputSelec} from '../../components/Forms'
-import  {getTipoDoc} from '../../services/uploadFormServ'
+import  {getTipoDoc,getTipoDocDummy} from '../../services/uploadFormServ'
+
 
 
 class Upload extends Component {
@@ -11,7 +12,9 @@ class Upload extends Component {
                "amenaza": {},
                "evaluacion_fuente":{},
                "evaluacion_info":{},
-               "clasificacion":{}
+               "clasificacion":{},
+
+              "dummy":{}
 
           }
           this.getContentQuery = this.getContentQuery.bind(this)
@@ -21,7 +24,7 @@ class Upload extends Component {
      getContentQuery(type,data){
           switch (type) {
                case "tipoDoc":
-                    this.setState({"tipoDoc": data})          
+                    this.setState({"tipoDoc": data}) ;
                break;
                case  "amenaza":
                
@@ -37,14 +40,17 @@ class Upload extends Component {
                     break;
                case "clasificacion":
                
-               break;     
+               break;
+              case "dummy":
+                  this.setState({"dummy": data});
+                  break;
           }
 
      }
 
      render (){
          
-          var {tipoDoc,amenaza} = this.state
+          var {tipoDoc,amenaza,dummy} = this.state
            /*
           var b = Object.keys(tipoDoc).map((i) => {
                return <button>{i}</button>          
@@ -52,9 +58,10 @@ class Upload extends Component {
           return (
                <div>
                     <h1>UPLOAD</h1>  
-                    <InputSelec id={"tipoDoc"} descripcion ={"Tipo de Documento"} data={tipoDoc}/>
-                    
-                    {/*{b} <InputSelec id={"amenaza"} descripcion ={"Amenaza"}/>
+
+                   <InputSelec id={"Dummy"} descripcion ={"Tipo de Dummy"} data={dummy}/>
+                   <InputSelec id={"tipoDoc"} descripcion ={"Tipo de Documento"} data={tipoDoc}/>
+                   {/*{b} <InputSelec id={"amenaza"} descripcion ={"Amenaza"}/>
                     <InputSelec id={"evaluacion_fuente"} descripcion ={"Evaluacion de la Fuente"}/>
                     <InputSelec id={"evaluacion_info"} descripcion ={"Evaluacion de la Informacion"}/>
                     <InputSelec id={"clasificacion"} descripcion ={"Clasificacion"}/>
@@ -66,8 +73,17 @@ class Upload extends Component {
      }
 
      componentDidMount(){
-          getTipoDoc(this.getContentQuery)
-          console.log(this.state.tipoDoc)
+
+         getTipoDoc().then((data) => {
+             this.getContentQuery("tipoDoc",data);
+             //return console.log(data)
+         })
+         //this.getContentQuery("dummy",getTipoDocDummy());
+         getTipoDocDummy().then( (data)  =>{
+             this.getContentQuery("dummy",data);
+         });
+         //console.log("axios",getTipoDoc())
+          //console.log("dUMMY",getTipoDocDummy())
      }
 }
 

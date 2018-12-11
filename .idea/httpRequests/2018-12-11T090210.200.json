@@ -1,0 +1,42 @@
+[
+  {
+    "idTipoDoc": 6,
+    "tipo": "Acta de Reunión"
+  },
+  {
+    "idTipoDoc": 1,
+    "tipo": "Boletín Diario de Información"
+  },
+  {
+    "idTipoDoc": 2,
+    "tipo": "Boletín Diario de Tratamineto"
+  },
+  {
+    "idTipoDoc": 4,
+    "tipo": "Informe Análisis Situacion Semanal"
+  },
+  {
+    "idTipoDoc": 8,
+    "tipo": "Informe Entrevista Militar"
+  },
+  {
+    "idTipoDoc": 7,
+    "tipo": "Informe Entrevista Preliminar"
+  },
+  {
+    "idTipoDoc": 5,
+    "tipo": "Matriz de Información de Tratamiento"
+  },
+  {
+    "idTipoDoc": 10,
+    "tipo": "Otros Requerimientos"
+  },
+  {
+    "idTipoDoc": 3,
+    "tipo": "Presentación Semanal"
+  },
+  {
+    "idTipoDoc": 9,
+    "tipo": "Respuesta Requerimiento Plan de Búsqueda"
+  }
+]
