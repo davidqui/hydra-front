@@ -16,6 +16,35 @@ export function getTipoDoc (){
           });
      return a
 }
+export function getAmenaza (){
+    var a = axios.get(URL+port+"/amenaza")
+        .then(response => {
+            //console.log(response.data)
+            //getContentQuery ("tipoDoc",response.data)
+            return response.data
+        }).catch(error  =>{
+            console.log("Error",error)
+        });
+    return a
+}
+
+
+
+
+
+
+
+export function getClasificacion (){
+    var a = axios.get(URL+port+"/clasificacion")
+        .then(response => {
+            //console.log(response.data)
+            //getContentQuery ("tipoDoc",response.data)
+            return response.data
+        }).catch(error  =>{
+            console.log("Error",error)
+        });
+    return a
+}
 
 export function getTipoDocDummy (){
     var A = Promise.resolve(tipoDoc);

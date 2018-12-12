@@ -17,8 +17,8 @@ class Hydra extends Component {
   render() {
     var Active = ""
     //var key = "" ////seguridad
-    var key = "Hyd-Src-UP" 
-    //var key = "Hyd-Src-RF" 
+    var key = "Hyd-Src-UP"
+    //var key = "Hyd-Src-RF"
     
     
     switch (key) {

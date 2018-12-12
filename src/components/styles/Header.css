@@ -3,7 +3,20 @@
      height: 200px;
 
 }
-.nav{
-     height: 100px !important;
+nav{
+     //position:  !important;
+     //display: inline-block;
+     /*height: 100px !important;*/
+    height: auto !important;
 
 }
+
+/*navbar-fixed {*/
+    /*position: relative !important;*/
+    /*height: %navbar-height-mobile;*/
+    /*z-index: 997;*/
+
+/*nav {*/
+    /*position: fixed;*/
+/*}*/
+/*}*/

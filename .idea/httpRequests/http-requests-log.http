@@ -2,6 +2,38 @@ GET http://localhost:9394/amenaza
 Accept: */*
 Cache-Control: no-cache
 
+<> 2018-12-12T081945.200.json
+
+###
+
+GET http://localhost:9394/tipoDoc
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-12-12T081915.200.json
+
+###
+
+GET http://localhost:9394/amenaza
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-12-11T052005.200.json
+
+###
+
+GET http://localhost:9394/clasificacion
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-12-11T051954.200.json
+
+###
+
+GET http://localhost:9394/amenaza
+Accept: */*
+Cache-Control: no-cache
+
 <> 2018-12-11T090508.200.json
 
 ###
