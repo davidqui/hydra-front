@@ -8,8 +8,6 @@ const port = ":9394";
 export function getTipoDoc (){
      var a = axios.get(URL+port+"/tipoDoc")
           .then(response => {
-               //console.log(response.data)
-               //getContentQuery ("tipoDoc",response.data)
                 return response.data
           }).catch(error  =>{
                console.log("Error",error)
@@ -19,8 +17,26 @@ export function getTipoDoc (){
 export function getAmenaza (){
     var a = axios.get(URL+port+"/amenaza")
         .then(response => {
-            //console.log(response.data)
-            //getContentQuery ("tipoDoc",response.data)
+            return response.data
+        }).catch(error  =>{
+            console.log("Error",error)
+        });
+    return a
+}
+
+export function getCredibilidad (){
+    var a = axios.get(URL+port+"/credibilidad")
+        .then(response => {
+            return response.data
+        }).catch(error  =>{
+            console.log("Error",error)
+        });
+    return a
+}
+
+export function getExactitud (){
+    var a = axios.get(URL+port+"/exactitud")
+        .then(response => {
             return response.data
         }).catch(error  =>{
             console.log("Error",error)
@@ -29,16 +45,19 @@ export function getAmenaza (){
 }
 
 
-
-
-
-
+export function getFactorInestabilidad (){
+    var a = axios.get(URL+port+"/factoresInestabilidad")
+        .then(response => {
+            return response.data
+        }).catch(error  =>{
+            console.log("Error",error)
+        });
+    return a
+}
 
 export function getClasificacion (){
     var a = axios.get(URL+port+"/clasificacion")
         .then(response => {
-            //console.log(response.data)
-            //getContentQuery ("tipoDoc",response.data)
             return response.data
         }).catch(error  =>{
             console.log("Error",error)

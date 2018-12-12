@@ -1,3 +1,155 @@
+GET http://localhost:9394/clasificacion
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-12-12T115324.200.json
+
+###
+
+GET http://localhost:9394/tipoDoc
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-12-12T115307.200.json
+
+###
+
+GET http://localhost:9394/amenaza
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-12-12T115301.200.json
+
+###
+
+GET http://localhost:9394/clasificacion
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-12-12T115254.200.json
+
+###
+
+GET http://localhost:9394/factoresInestabilidad
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-12-12T115249.200.json
+
+###
+
+GET http://localhost:9394/exactitud
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-12-12T115239.200.json
+
+###
+
+GET http://localhost:9394/credibilidad
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-12-12T115227.200.json
+
+###
+
+GET http://localhost:9394/exactitud
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-12-12T114810.200.json
+
+###
+
+GET http://localhost:9394/clasificacion
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-12-12T112127.200.json
+
+###
+
+GET http://localhost:9394/factoresInestabilidad
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-12-12T112117.200.json
+
+###
+
+GET http://localhost:9394/exactitud
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-12-12T111740.200.json
+
+###
+
+GET http://localhost:9394/factoresInestabilidad
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-12-12T111724.200.json
+
+###
+
+GET http://localhost:9394/clasificacion
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-12-12T111714.200.json
+
+###
+
+GET http://localhost:9394/factoresInestabilidad
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-12-12T104221.200.json
+
+###
+
+GET http://localhost:9394/unidad
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-12-12T104148.200.json
+
+###
+
+GET http://localhost:9394/usuarioUnidad
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-12-12T104140.500.json
+
+###
+
+GET http://localhost:9394/usuarioUnidad
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-12-12T104120.500.json
+
+###
+
+GET http://localhost:9394/exactitud
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-12-12T103003.200.json
+
+###
+
+GET http://localhost:9394/credibilidad
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-12-12T101513.200.json
+
+###
+
 GET http://localhost:9394/amenaza
 Accept: */*
 Cache-Control: no-cache

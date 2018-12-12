@@ -1,6 +1,5 @@
-import React,{Component} from 'react'
-
-import './styles/Header.css'
+import React,{Component} from 'react';
+import './styles/Header.css';
 import M from  "materialize-css";
 
 class Header extends Component {
@@ -10,28 +9,25 @@ class Header extends Component {
                <NavBar/>
           )
      }
-
 }
-
 
 class NavBar extends Component {
 
      render(){
        return(
            <div>
-
-          <div className="navbar-fixed ">
-               <nav>
-                    <div className="nav-wrapper  light-blue darken-4  ">
-                         <a href="#" className="brand-logo center">
-                         HYDRA SEARCH
-                         </a>
-                         <div className="nav-content">
-                              <span className="nav-title">Subsistema de Inteligencia y Contrainteligencia del Ejército</span>
-                         </div>
-                    </div>
-               </nav>
-          </div>
+              <div className="navbar-fixed ">
+                   <nav>
+                        <div className="nav-wrapper  light-blue darken-4  ">
+                             <a href="#" className="brand-logo center">
+                             HYDRA SEARCH
+                             </a>
+                             <div className="nav-content">
+                                  <span className="nav-title">Subsistema de Inteligencia y Contrainteligencia del Ejército</span>
+                             </div>
+                        </div>
+                   </nav>
+              </div>
            </div>
 
        )
@@ -41,8 +37,6 @@ class NavBar extends Component {
              var elems = document.querySelectorAll('.sidenav');
              var instances = M.Sidenav.init(elems);
          });
-
-
      }
 }
 

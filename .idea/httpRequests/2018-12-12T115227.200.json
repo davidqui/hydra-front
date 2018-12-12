@@ -1,0 +1,32 @@
+[
+  {
+    "idCredibilidad": 1,
+    "nombre": "A - COMPLETA",
+    "valor": 100
+  },
+  {
+    "idCredibilidad": 2,
+    "nombre": "B - NORMAL",
+    "valor": 80
+  },
+  {
+    "idCredibilidad": 3,
+    "nombre": "C - REGULAR",
+    "valor": 60
+  },
+  {
+    "idCredibilidad": 4,
+    "nombre": "D - DUDOSA",
+    "valor": 40
+  },
+  {
+    "idCredibilidad": 5,
+    "nombre": "E - MINIMA",
+    "valor": 20
+  },
+  {
+    "idCredibilidad": 6,
+    "nombre": "F - NO PUEDE SER JUZGADA",
+    "valor": 10
+  }
+]

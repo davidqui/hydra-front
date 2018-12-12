@@ -1,81 +1,60 @@
 import React,{Component} from 'react'
 import {InputSelec} from '../../components/Forms'
+/**
+ * Import a los servicios
+ */
 import  {getTipoDoc,
-         getAmenaza,getClasificacion,
+         getAmenaza,
+         getCredibilidad,
+         getClasificacion,
+         getExactitud,
+         getFactorInestabilidad,
          getTipoDocDummy} from '../../services/uploadFormServ'
 import M from "materialize-css"
 
 
 class Upload extends Component {
      constructor(){
-          super();
+         super();
+         /**
+          * en el estado del componente queda almacenada la data entregada por cada uno de los
+          * servicios correspondientes
+          *
+          */
           this.state = {
-               "tipoDoc": {},
-               "amenaza": {},
-               "evaluacion_fuente":{},
-               "evaluacion_info":{},
-               "clasificacion":{},
+               "tipoDoc": [],
+               "amenaza": [],
+               "credibilidad":[],
+               "exactitud":[],
+               "clasificacion":[],
+               "factoresInestabilidad" :[],
+
 
               "dummy":{}
 
-          }
-          this.getContentQuery = this.getContentQuery.bind(this)
+          };
+          //this.getContentQuery = this.getContentQuery.bind(this)
+         /**
+          *Invocacion a cada uno de los servicios , se toma la data que entrega el servicios y
+          * se hace el SET ala variable del estado
+          */
 
-         getTipoDoc().then((data) => {
-                 //this.getContentQuery("tipoDoc", data);
-                this.setState({"tipoDoc": data}) ;
-             //return console.log(data)
-         });
-         getAmenaza().then( (data)  =>{
-             //this.getContentQuery("amenaza",data);
-                 this.setState({"amenaza": data}) ;
-
-         });
-         getClasificacion().then((data) => {
-             //this.getContentQuery("clasificacion",data)
-                 this.setState({"clasificacion": data});
-
-         });
-
-         //this.getContentQuery("dummy",getTipoDocDummy());
-         getTipoDocDummy().then( (data)  =>{
-             this.setState({"dummy": data}) ;
-             this.getContentQuery("dummy",data);
-         });
-
+        //this.getContentQuery("dummy",getTipoDocDummy());
+         // getTipoDocDummy().then( (data)  =>{
+         //     this.setState({"dummy": data}) ;
+         // });
      }
-     
-     getContentQuery(type,data){
-          switch (type) {
-               case "tipoDoc":
-
-                    this.setState({"tipoDoc": data}) ;
-               break;
-               case  "amenaza":
-                   this.setState({"amenaza": data}) ;
-               break;
-               case "evaluacion_fuente":
-
-                    break;
-               case "evaluacion_info":
-               
-               break;
-               case "tipo_amenaza":
-                    
-                    break;
-               case "clasificacion":
-                   this.setState({"clasificacion": data}) ;
-               break;
-              case "dummy":
-                  this.setState({"dummy": data});
-                  break;
-          }
-
-     }
-
      render (){
-         
-          var {tipoDoc,amenaza,dummy,clasificacion} = this.state
+         /**
+          * extracciond e los campos del estado
+          */
+          var { tipoDoc,
+                amenaza,
+                credibilidad,
+                exactitud,
+                factoresInestabilidad,
+                clasificacion,
+                dummy} = this.state;
            /*
           var b = Object.keys(tipoDoc).map((i) => {
                return <button>{i}</button>          
@@ -83,77 +62,81 @@ class Upload extends Component {
           return (
                <div>
                    <div className= "container row">
-                               <form action="#">
-                                   <div className="file-field input-field">
-                                       <div className="btn">
-                                           <span>File</span>
-                                           <input type="file"/>
-                                       </div>
-                                       <div className="file-path-wrapper">
-                                           <input className="file-path validate" type="text"/>
-                                       </div>
-                                   </div>
-                               <div className ="col s6">
-                                   <InputSelec  id={"tipoDoc"} descripcion ={"Tipo de Documento"} data={tipoDoc}/>
+                       <form action="#">
+                           <div className="file-field input-field">
+                               <div className="btn">
+                                   <span>File</span>
+                                   <input type="file"/>
                                </div>
-                               <div className ="col s6">
-                                   <InputSelec id={"amenaza"} descripcion ={"Amenaza"} data={amenaza}/>
+                               <div className="file-path-wrapper">
+                                   <input className="file-path validate" type="text"/>
                                </div>
-                               <div className="row">
-                                   <div className="col s12">
-                                       <InputSelec id={"evaluacion_fuente"} descripcion ={"Evaluacion de la Fuente"} data={tipoDoc}/>
-                                   </div>
+                           </div>
+                               <InputSelec id={"tipoDoc"} descripcion ={"Tipo de Documento"}  campo={"tipo"}data={tipoDoc} s={6}/>
+                               <InputSelec id={"amenaza"} descripcion ={"Amenaza"} campo={"tipo"} data={amenaza} s={6}/>
+                               <InputSelec id={"credibilidad"} descripcion ={"Evaluacion de la Fuente"} campo={"nombre"} data={credibilidad} s={12}/>
+                               <InputSelec id={"exactitud"} descripcion ={"Evaluacion de la Informacion"} campo={"nombre"} data={exactitud} s={12}/>
+                               <InputSelec id={"factoresInestabilidad "} descripcion ={"Factores de Inestabilidad"} campo={"nombre"} data={factoresInestabilidad} s={12}/>
+                               <InputSelec id={"clasificacion"} descripcion ={"Clasificacion"} campo={"tipo"} data={clasificacion} s={12}/>
+                               <InputSelec id={"tipoDoc"} descripcion ={"Tipo de Documento"}  campo={"tipo"}data={tipoDoc} s={6}/>
+                               <InputSelec id={"amenaza"} descripcion ={"Amenaza"} campo={"tipo"} data={amenaza} s={6}/>
+                           <div  className="input-field col s12">
+                               <select id={"test"}    >
+                                   <option value=""  disabled selected>Seleccione una Opción</option>
+                                   <option value="1">Option 1</option>
+                                   <option value="2">Option 2</option>
+                                   <option value="3">Option 3</option>
+                               </select>
+                               <label >YTest</label>
+                           </div>
+                           <div className="row">
+                               <div className="col s6">
+                                   <p>
+                                       <label>
+                                           <input type="checkbox" className="filled-in" />
+                                           <span>Publico</span>
+                                       </label>
+                                   </p>
                                </div>
-                               <div className="row">
-                                   <div className="col s12">
-                                       <InputSelec id={"evaluacion_info"} descripcion ={"Evaluacion de la Informacion"} data={tipoDoc}/>
-                                   </div>
+                               <div className="col s6">
+                                   <p>
+                                       <label>
+                                           <input type="checkbox" className="filled-in" />
+                                           <span>Privado</span>
+                                       </label>
+                                   </p>
                                </div>
-                               <div className="row">
-                                   <div className="col s12">
-                                       <InputSelec id={"clasificacion"} descripcion ={"Clasificacion"} data={clasificacion}/>
-                                   </div>
-                               </div>
-                               <div className="row">
-                                   <div className="col s6">
-                                       <p>
-                                           <label>
-                                               <input type="checkbox" className="filled-in" />
-                                               <span>Publico</span>
-                                           </label>
-                                       </p>
-                                   </div>
-                                   <div className="col s6">
-                                       <p>
-                                           <label>
-                                               <input type="checkbox" className="filled-in" />
-                                               <span>Privado</span>
-                                           </label>
-                                       </p>
-                                   </div>
-
-                               </div>
-                                   <button className="btn waves-effect waves-light" type="submit" name="action">Submit
-                                       <i className="material-icons right">send</i>
-                                   </button>
-                               </form>
-                        </div>
+                           </div>
+                               <button className="btn waves-effect waves-light" type="submit" name="action">Submit
+                                   <i className="material-icons right">send</i>
+                               </button>
+                           </form>
+                    </div>
                </div>
           )     
 
      }
-
      componentDidMount(){
-
-
-
-         //console.log("axios",getTipoDoc())
-          //console.log("dUMMY",getTipoDocDummy())
+         getTipoDoc().then((data) => {
+             this.setState({"tipoDoc": data}) ;
+         });
+         getAmenaza().then( (data)  =>{
+             this.setState({"amenaza": data}) ;
+         });
+         getCredibilidad().then( (data)  =>{
+             this.setState({"credibilidad": data}) ;
+         });
+         getExactitud().then((data) => {
+             this.setState({"exactitud": data});
+         });
+         getFactorInestabilidad().then((data) => {
+             this.setState({"factoresInestabilidad": data});
+         });
+         getClasificacion().then((data) => {
+             this.setState({"clasificacion": data});
+         });
          M.AutoInit();
      }
 }
-
-
-
 
 export default Upload

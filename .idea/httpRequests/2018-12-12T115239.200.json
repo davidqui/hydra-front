@@ -1,0 +1,32 @@
+[
+  {
+    "idExactitud": 1,
+    "nombre": "1 - CONFIRMADO",
+    "valor": 100
+  },
+  {
+    "idExactitud": 2,
+    "nombre": "2 - PROBABLEMENTE",
+    "valor": 80
+  },
+  {
+    "idExactitud": 3,
+    "nombre": "3 - POSIBLEMENTE",
+    "valor": 60
+  },
+  {
+    "idExactitud": 4,
+    "nombre": "4 - DUDOSO",
+    "valor": 40
+  },
+  {
+    "idExactitud": 5,
+    "nombre": "5 - IMPROBABLE",
+    "valor": 20
+  },
+  {
+    "idExactitud": 6,
+    "nombre": "6 - NO PUEDE SER JUZGADO",
+    "valor": 10
+  }
+]

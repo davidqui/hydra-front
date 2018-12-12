@@ -1,0 +1,30 @@
+[
+  {
+    "idFactores": 3,
+    "nombre": "CONTRABANDO"
+  },
+  {
+    "idFactores": 4,
+    "nombre": "EXPOLTACION ILICITA DE YACIMINETOS MINEROS"
+  },
+  {
+    "idFactores": 2,
+    "nombre": "EXTORSION"
+  },
+  {
+    "idFactores": 5,
+    "nombre": "MIGRACION ILEGAL"
+  },
+  {
+    "idFactores": 6,
+    "nombre": "NARCOTRAFICO"
+  },
+  {
+    "idFactores": 1,
+    "nombre": "SECUESTRO"
+  },
+  {
+    "idFactores": 7,
+    "nombre": "TRAFICO DE ARMAS Y MUNICIONES"
+  }
+]

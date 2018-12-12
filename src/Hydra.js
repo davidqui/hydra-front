@@ -19,8 +19,6 @@ class Hydra extends Component {
     //var key = "" ////seguridad
     var key = "Hyd-Src-UP"
     //var key = "Hyd-Src-RF"
-    
-    
     switch (key) {
       case "Hyd-Src-UP" :
           Active = <Upload/>
