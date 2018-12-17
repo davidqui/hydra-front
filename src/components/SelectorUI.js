@@ -17,31 +17,42 @@ class SelectorUI extends  Component{
     handleChange = event => {
         this.setState({ [event.target.name]: event.target.value });
         this.setState({ "sel": event.target.value });
-        console.log(event.target.value);
 
+        var {id}  =  this.props.options
+        var idTipoDoc = event.target.value;
+        this.props.extract(id,idTipoDoc);
     };
     componentDidMount() {
         var {data} = this.props;
         this.callService();
         //this.setState({data})
+        console.log(this.props)
     }
 
     async callService (){
         var {service}  = this.props;
         var data = await  service();
+        console.log(data);
         this.setState({data});
     }
     render() {
-        var {id,menuItems,s} = this.props.options;
+        var {id,descripcion,s} = this.props.options;
         var {data} = this.state ;
+
+
         if ( data !== undefined){
             var itemList = Object.keys(data).map((index) => {
-                return  <MenuItem key={index} value={data[index][id]}>{data[index]["tipo"]}</MenuItem>;
+                // console.log("nombre"in  data[index]);
+                // console.log(data[index][id]);
+                // console.log(id);
+                var campo = "nombre"in  data[index] ? "nombre": "tipo";
+                // console.log(data[index][campo]);
+                return  <MenuItem key={index} value={data[index][id]}>{data[index][campo]}</MenuItem>;
             })
         }
         return (
             <FormControl className={"col s"+s}>
-                <InputLabel htmlFor="age-simple">{this.props.name}</InputLabel>
+                <InputLabel htmlFor="age-simple">{descripcion}</InputLabel>
                 <Select onChange={this.handleChange}  value={this.state.sel}>
                     <MenuItem value="" disabled>
                         <em>Selecione una Opcion</em>

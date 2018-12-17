@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {InputSelec,InputCheck} from '../../components/Forms';
+import {InputCheck} from '../../components/InputCheck';
 /**
  * Import a los servicios
  */
@@ -10,17 +10,20 @@ import  {getTipoDoc,
          getExactitud,
          getFactorInestabilidad,
           postForm,
-         getTipoDocDummy} from '../../services/uploadFormServ'
-import M from "materialize-css"
-import SelectorUI from  '../../components/FormUi';
+         } from '../../services/uploadFormServ'
+import SelectorUI from '../../components/SelectorUI';
+import MultiSelectoCheck from '../../components/MultiSelectoCheck';
+import FormLabel from "@material-ui/core/FormLabel";
 
+
+/** Configuraciones de los Campos del formulario **/
 const formField = {
-    "tipoDoc" :             { "id":"idTipoDoc" , "s":8,"descripcion":"Tipo de Documento"},
-    "amenaza":              { "id":"idAmenaza" , "s":8,"descripcion":"Tipo de Amenaza"},
-    "credibilidad":         { "id":"idCredibilidad" , "s":8,"descripcion":"Evaluacion de la Fuente"},
-    "exactitud":            { "id":"idExactitud" , "s":8,"descripcion":"Evaluacion de la Informacion"},
-    "factoresInestabilidad":{ "id":"idFactores" , "s":8,"descripcion":"Factores de Inestabilidad"},
-    "clasificacion":        { "id":"idClasificacion" , "s":8,"descripcion":"Clasificacion"}
+    "tipoDoc" :             { "id":"idTipoDoc" , "s":6,"descripcion":"Tipo de Documento"},
+    "amenaza":              { "id":"idAmenaza" , "s":6,"descripcion":"Tipo de Amenaza ---Multiple"},
+    "credibilidad":         { "id":"idCredibilidad" , "s":12,"descripcion":"Evaluacion de la Fuente"},
+    "exactitud":            { "id":"idExactitud" , "s":6,"descripcion":"Evaluacion de la Informacion"},
+    "factoresInestabilidad":{ "id":"idFactores" , "s":6,"descripcion":"Factores de Inestabilidad ---Multiple"},
+    "clasificacion":        { "id":"idClasificacion" , "s":12,"descripcion":"Clasificacion"}
 
 }
 
@@ -35,37 +38,29 @@ class Upload extends Component {
           *
           */
           this.state = {
-               "tipoDoc": [],
-               "amenaza": [],
-               "credibilidad":[],
-               "exactitud":[],
-               "clasificacion":[],
-               "factoresInestabilidad" :[],
-
-              "dummy":{}
+               "idTipoDoc": "",
+               "idAmenaza": [],
+               "idCredibilidad":"",
+               "idExactitud":"",
+               "clasificacion":"",
+               "idFactores" :[],
+              "accesoPrimario":false,
+               "idClasificacion":"",
           };
 
-         this.serviceCaller()
+
      }
+     //  metodo para extraer los datos de cada campo mapeandolos a una variable del estado
+     extractData = (key,value) =>{
+         this.setState({[key]: value})
+     } ;
+
      render (){
-         /**
-          * extracciond e los campos del estado
-          */
-          var { tipoDoc,
-                amenaza,
-                credibilidad,
-                exactitud,
-                factoresInestabilidad,
-                clasificacion,
-                dummy} = this.state;
-           /*
-          var b = Object.keys(tipoDoc).map((i) => {
-               return <button>{i}</button>          
-          })*/
-          return (
+         return (
                <div>
                    <div className= "container row">
                        <form id="uploadForm"  >
+                           {/*{ Input del archivao}*/}
                            <div className="file-field input-field">
                                <div className="btn">
                                    <span>File</span>
@@ -75,129 +70,53 @@ class Upload extends Component {
                                    <input className="file-path validate" type="text"/>
                                </div>
                            </div>
+                           {/*{Campos de el fromulario }*/}
+                           <SelectorUI name={"tipoDoc"} options={formField["tipoDoc"]}  service={getTipoDoc} extract={this.extractData}/>
+                           <MultiSelectoCheck name={"amenaza"} options={formField["amenaza"]}   service={getAmenaza} extract={this.extractData}/>
 
-                           <InputSelec id={"tipoDoc"} descripcion ={"Tipo de Documentooooooooo"}  campo={"tipo"} data={tipoDoc}  s={6} />
-                           <InputSelec id={"amenaza"} descripcion ={"Amenaza"} campo={"tipo"} data={amenaza} s={6} multiple={true}/>
-                           <InputSelec id={"credibilidad"} descripcion ={"Evaluacion de la Fuente"} campo={"nombre"} data={credibilidad} s={12}/>
-                           <InputSelec id={"exactitud"} descripcion ={"Evaluacion de la Informacion"} campo={"nombre"} data={exactitud} s={12}/>
-                           <InputSelec id={"factoresInestabilidad"} descripcion ={"Factores de Inestabilidad"} campo={"nombre"} data={factoresInestabilidad} s={12} multiple={true}/>
-                           <InputSelec id={"clasificacion"} descripcion ={"Clasificacion"} campo={"tipo"} data={clasificacion} s={12}/>
+                           <SelectorUI name={"credibilidad"} options={formField["credibilidad"]}   service={getCredibilidad} extract={this.extractData}/>
+                           <SelectorUI name={"exactitud"} options={formField["exactitud"]}   service={getExactitud} extract={this.extractData}/>
 
+                           <MultiSelectoCheck name={"factoresInestabilidad"} options={formField["factoresInestabilidad"]}   service={getFactorInestabilidad} extract={this.extractData}/>
+                           <SelectorUI name={"clasificacion"} options={formField["clasificacion"]}   service={getClasificacion} extract={this.extractData}/>
 
-                           <SelectorUI name={"tipoDoc"} options={formField["tipoDoc"]} data={tipoDoc}  service={getTipoDoc}/>
-                           <SelectorUI name={"amenaza"} options={formField["amenaza"]} data={amenaza}  service={getAmenaza}/>
-
-                           <SelectorUI name={"credibilidad"} options={formField["credibilidad"]} data={credibilidad}  service={getCredibilidad}/>
-                           <SelectorUI name={"exactitud"} options={formField["exactitud"]} data={exactitud}  service={getCredibilidad}/>
-
-                           <SelectorUI name={"factoresInestabilidad"} options={formField["factoresInestabilidad"]} data={factoresInestabilidad}  service={getFactorInestabilidad}/>
-                           <SelectorUI name={"clasificacion"} options={formField["clasificacion"]} data={clasificacion}  service={getClasificacion}/>
-
-                           <div className="row">
-                               <InputCheck name={"Publico"}  event={this.checkButton} s={6}/>
-                               <InputCheck name={"Privado"}  event={this.checkButton} s={6}/>
+                           {/*{selecto nivel de acesos}*/}
+                           <div className="row  mt-4">
+                               <FormLabel component="legend">Nivel de Acceso</FormLabel>
+                               <InputCheck name={"Privado"}  extract={this.extractData} s={6} />
                            </div>
-
+                           {/*{submit de la peticion }*/}
                                <button className="btn waves-effect waves-light" type="submit" name="action" onClick={(e) => this.sendForm(e)}>
                                    Submit
                                    <i className="material-icons right">send</i>
                                </button>
-
-
                            </form>
                     </div>
                </div>
           )     
 
      }
-     checkButton(e){
-          if (e.target.id == "Publico"){
-              var privado = document.getElementById("Privado");
-              privado.checked = false
-          }
-         else if (e.target.id == "Privado"){
-             var publico = document.getElementById("Publico");
-              publico.checked = false
-         }
-     }
-
-
-    /**
-     *Invocacion a cada uno de los servicios , se toma la data que entrega el servicios y
-     * se hace el SET ala variable del estado
-     */
-     async serviceCaller (){
-         var tipoDoc = await getTipoDoc();
-         var amenaza = await getAmenaza();
-         var credibilidad = await getCredibilidad();
-         var exactitud = await getExactitud();
-         var factoresInestabilidad = await getFactorInestabilidad();
-         var clasificacion = await getClasificacion();
-
-         this.setState(
-             { tipoDoc,
-                    amenaza,
-                    credibilidad,
-                    exactitud,
-                    factoresInestabilidad,
-                    clasificacion
-             });
-         //console.log(tipoDoc,amenaza,credibilidad,exactitud,factoresInestabilidad,clasificacion);
-        M.AutoInit();
-     }
-
-
 
      async sendForm(e){
          e.preventDefault();
         console.log("ENTRA ");
         var inputFile = document.getElementById("uploadFile");
 
-        var tipoDoc = document.getElementById("tipoDoc");
-        var valTipoDoc = tipoDoc.options[tipoDoc.selectedIndex].value;
-
-        var amenaza = document.getElementById("amenaza");
-        var valAmenaza = amenaza.options[amenaza.selectedIndex].value;
-
-        var credibilidad = document.getElementById("credibilidad");
-        var valCredibilidad = credibilidad.options[credibilidad.selectedIndex].value;
-
-        var exactitud = document.getElementById("exactitud");
-        var valExactitud = exactitud.options[exactitud.selectedIndex].value;
-
-        var factoresInestabilidad = document.getElementById("factoresInestabilidad");
-        var valFactoresInestabilidad = factoresInestabilidad.options[factoresInestabilidad.selectedIndex].value;
-
-        var clasificacion = document.getElementById("clasificacion");
-        var valClasificacion = clasificacion.options[clasificacion.selectedIndex].value;
-
-        var data = {
-            "idTipoDoc": valTipoDoc,
-            "amenaza": valAmenaza,//multiple
-            "credibilidad":valCredibilidad,
-            "exactitud": valExactitud,
-            "factoresInestabilidad": valFactoresInestabilidad,// Multiple
-            "clasificacion":valClasificacion,
-        };
-
          const formData = new FormData();
-         // formData.append('idTipoDoc',valTipoDoc);
-         // formData.append('amenaza',valAmenaza);
-         // formData.append('credibilidad',valCredibilidad);
-         // formData.append('exactitud',valExactitud);
-         // formData.append('factoresInestabilidad',valFactoresInestabilidad);
-         // formData.append('clasificacion',valClasificacion);
          formData.append('docFile', inputFile.files[0]);
+
          formData.append('login', "aherreram");
-         formData.append('amenazaCollection', "1,2");
-         formData.append('transicionCollection', "1,3");
-         formData.append('idExactitud', "5");
-         formData.append('idCredibilidad', "2");
          formData.append('usuarioValidador', "jcespedeso");
-         formData.append('descripcion', "dessda");
-         formData.append('idTipoDoc', "2");
-         formData.append('idClasificacion', "2");
-         formData.append('accesoPrimario', true);
+         formData.append('descripcion', "CABO quijano");
+
+         formData.append('amenazaCollection', this.state.idAmenaza);
+         formData.append('transicionCollection', this.state.idFactores);//factores inestabilidad
+
+         formData.append('idExactitud', this.state.idExactitud);
+         formData.append('idCredibilidad',this.state.idCredibilidad);
+         formData.append('idTipoDoc', this.state.idTipoDoc);
+         formData.append('idClasificacion',this.state.idClasificacion);
+         formData.append('accesoPrimario', this.state.accesoPrimario);
 
         console.log("Este es el data ", formData);
         postForm(formData);
