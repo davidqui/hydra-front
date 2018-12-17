@@ -145,18 +145,36 @@ class Upload extends Component {
         var clasificacion = document.getElementById("clasificacion");
         var valClasificacion = clasificacion.options[clasificacion.selectedIndex].value;
 
-        postForm(inputFile.files[0],
-            {
-                "form": {
-                "idTipoDoc": valTipoDoc,
-                "amenaza": valAmenaza,//multiple
-                "credibilidad":valCredibilidad,
-                "exactitud": valExactitud,
-                "factoresInestabilidad": valFactoresInestabilidad,// Multiple
-                "clasificacion":valClasificacion
-                }
-            });
-        console.log(valTipoDoc, valAmenaza, valCredibilidad, valExactitud, valFactoresInestabilidad, valClasificacion);
+        var data = {
+            "idTipoDoc": valTipoDoc,
+            "amenaza": valAmenaza,//multiple
+            "credibilidad":valCredibilidad,
+            "exactitud": valExactitud,
+            "factoresInestabilidad": valFactoresInestabilidad,// Multiple
+            "clasificacion":valClasificacion,
+        };
+
+         const formData = new FormData();
+         // formData.append('idTipoDoc',valTipoDoc);
+         // formData.append('amenaza',valAmenaza);
+         // formData.append('credibilidad',valCredibilidad);
+         // formData.append('exactitud',valExactitud);
+         // formData.append('factoresInestabilidad',valFactoresInestabilidad);
+         // formData.append('clasificacion',valClasificacion);
+         formData.append('docFile', inputFile.files[0]);
+         formData.append('login', "aherreram");
+         formData.append('amenazaCollection', "1,2");
+         formData.append('transicionCollection', "1,3");
+         formData.append('idExactitud', "5");
+         formData.append('idCredibilidad', "2");
+         formData.append('usuarioValidador', "jcespedeso");
+         formData.append('descripcion', "dessda");
+         formData.append('idTipoDoc', "2");
+         formData.append('idClasificacion', "2");
+         formData.append('accesoPrimario', true);
+
+        console.log("Este es el data ", formData);
+        postForm(formData);
      }
 }
 

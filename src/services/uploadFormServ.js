@@ -80,21 +80,18 @@ export function getTipoDocDummy (){
  *
  * @param data
  * Servicio POST para  el formulario en la vista
- *  vista HydraSearch/upload.js
+ *  vista HydraSearch/upload.
  */
 
 
-export function postForm(file,data) {
-    var form = new FormData();
-    form.append("docFile",file);
-    form.append("documento","sdasdasda");
-
-    var list = Object.keys(data["form"]);
-    list.forEach((c)=>{
-        form.append(c,data["form"][c]);
-    });
+export function postForm(formData) {
+    const config = {
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+    };
     //axios.post(URL+port+'/save', form)
-    axios.post(URL+port+'/save',)
+    axios.post(URL+port+'/transaccion/save', formData, config)
     .then(function (response) {
         console.log(response);
     })
