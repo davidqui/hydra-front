@@ -4,6 +4,12 @@ import axios from 'axios';
 const URL  = "http://localhost";
 const port = ":9394";
 
+/**
+ *
+ * @returns {Promise<AxiosResponse<any> | never>}
+ * GET SERVICES para todos los enpoindts que poblnan los campos de la
+ * vista HydraSearch/upload.js
+ */
 
 export function getTipoDoc (){
      var a = axios.get(URL+port+"/tipoDoc")
@@ -68,4 +74,31 @@ export function getClasificacion (){
 export function getTipoDocDummy (){
     var A = Promise.resolve(tipoDoc);
     return A.then((t => t ))
+}
+
+/**
+ *
+ * @param data
+ * Servicio POST para  el formulario en la vista
+ *  vista HydraSearch/upload.js
+ */
+
+
+export function postForm(file,data) {
+    var form = new FormData();
+    form.append("docFile",file);
+    form.append("documento","sdasdasda");
+
+    var list = Object.keys(data["form"]);
+    list.forEach((c)=>{
+        form.append(c,data["form"][c]);
+    });
+    //axios.post(URL+port+'/save', form)
+    axios.post(URL+port+'/save',)
+    .then(function (response) {
+        console.log(response);
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
 }

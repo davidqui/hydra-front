@@ -20,7 +20,7 @@ class NavBar extends Component {
                    <nav>
                         <div className="nav-wrapper  light-blue darken-4  ">
                              <a href="#" className="brand-logo center">
-                             HYDRA SEARCH
+                                HYDRA SEARCH
                              </a>
                              <div className="nav-content">
                                   <span className="nav-title">Subsistema de Inteligencia y Contrainteligencia del Ejército</span>

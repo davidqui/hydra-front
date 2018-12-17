@@ -1,0 +1,22 @@
+[
+  {
+    "idClasificacion": 4,
+    "tipo": "CONFIDENCIAL"
+  },
+  {
+    "idClasificacion": 3,
+    "tipo": "RESTRINGIDO"
+  },
+  {
+    "idClasificacion": 2,
+    "tipo": "SECRETO"
+  },
+  {
+    "idClasificacion": 5,
+    "tipo": "SIN CLASIFICACION"
+  },
+  {
+    "idClasificacion": 1,
+    "tipo": "ULTRASECRETO"
+  }
+]

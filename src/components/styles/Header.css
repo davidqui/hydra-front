@@ -1,15 +1,18 @@
 .navEjercito {
-     position: relative;
+     /*position: relative;*/
      height: 200px;
 
 }
 nav{
-     //position:  !important;
-     //display: inline-block;
+     /*position:  !important;*/
+     /*display: block!important;*/
      /*height: 100px !important;*/
     height: auto !important;
 
 
+}
+.navbar-fixed{
+    margin-bottom: 7em;
 }
 
 /*navbar-fixed {*/

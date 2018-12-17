@@ -1,0 +1,10 @@
+{
+  "form": {
+    "tipoDoc": "",
+    "amenaza": [],//multiple
+    "credibilidad":"",
+    "exactitud": "",
+    "factoresInestabilidad": [],// Multiple
+    "clasificacion": ""
+  }
+}

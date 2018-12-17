@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import {InputSelec} from '../../components/Forms'
+import {InputSelec,InputCheck} from '../../components/Forms'
 /**
  * Import a los servicios
  */
@@ -9,6 +9,7 @@ import  {getTipoDoc,
          getClasificacion,
          getExactitud,
          getFactorInestabilidad,
+          postForm,
          getTipoDocDummy} from '../../services/uploadFormServ'
 import M from "materialize-css"
 
@@ -31,18 +32,9 @@ class Upload extends Component {
 
 
               "dummy":{}
-
           };
-          //this.getContentQuery = this.getContentQuery.bind(this)
-         /**
-          *Invocacion a cada uno de los servicios , se toma la data que entrega el servicios y
-          * se hace el SET ala variable del estado
-          */
 
-        //this.getContentQuery("dummy",getTipoDocDummy());
-         // getTipoDocDummy().then( (data)  =>{
-         //     this.setState({"dummy": data}) ;
-         // });
+         this.serviceCaller()
      }
      render (){
          /**
@@ -62,52 +54,28 @@ class Upload extends Component {
           return (
                <div>
                    <div className= "container row">
-                       <form action="#">
+                       <form id="uploadForm"  >
                            <div className="file-field input-field">
                                <div className="btn">
                                    <span>File</span>
-                                   <input type="file"/>
+                                   <input id="uploadFile" type="file"/>
                                </div>
                                <div className="file-path-wrapper">
                                    <input className="file-path validate" type="text"/>
                                </div>
                            </div>
-                               <InputSelec id={"tipoDoc"} descripcion ={"Tipo de Documento"}  campo={"tipo"}data={tipoDoc} s={6}/>
-                               <InputSelec id={"amenaza"} descripcion ={"Amenaza"} campo={"tipo"} data={amenaza} s={6}/>
+                               <InputSelec id={"tipoDoc"} descripcion ={"Tipo de Documento"}  campo={"tipo"} data={tipoDoc}  s={6} />
+                               <InputSelec id={"amenaza"} descripcion ={"Amenaza"} campo={"tipo"} data={amenaza} s={6} multiple={true}/>
                                <InputSelec id={"credibilidad"} descripcion ={"Evaluacion de la Fuente"} campo={"nombre"} data={credibilidad} s={12}/>
                                <InputSelec id={"exactitud"} descripcion ={"Evaluacion de la Informacion"} campo={"nombre"} data={exactitud} s={12}/>
-                               <InputSelec id={"factoresInestabilidad "} descripcion ={"Factores de Inestabilidad"} campo={"nombre"} data={factoresInestabilidad} s={12}/>
+                               <InputSelec id={"factoresInestabilidad"} descripcion ={"Factores de Inestabilidad"} campo={"nombre"} data={factoresInestabilidad} s={12} multiple={true}/>
                                <InputSelec id={"clasificacion"} descripcion ={"Clasificacion"} campo={"tipo"} data={clasificacion} s={12}/>
-                               <InputSelec id={"tipoDoc"} descripcion ={"Tipo de Documento"}  campo={"tipo"}data={tipoDoc} s={6}/>
-                               <InputSelec id={"amenaza"} descripcion ={"Amenaza"} campo={"tipo"} data={amenaza} s={6}/>
-                           <div  className="input-field col s12">
-                               <select id={"test"}    >
-                                   <option value=""  disabled selected>Seleccione una Opción</option>
-                                   <option value="1">Option 1</option>
-                                   <option value="2">Option 2</option>
-                                   <option value="3">Option 3</option>
-                               </select>
-                               <label >YTest</label>
-                           </div>
                            <div className="row">
-                               <div className="col s6">
-                                   <p>
-                                       <label>
-                                           <input type="checkbox" className="filled-in" />
-                                           <span>Publico</span>
-                                       </label>
-                                   </p>
-                               </div>
-                               <div className="col s6">
-                                   <p>
-                                       <label>
-                                           <input type="checkbox" className="filled-in" />
-                                           <span>Privado</span>
-                                       </label>
-                                   </p>
-                               </div>
+                               <InputCheck name={"Publico"}  event={this.checkButton} s={6}/>
+                               <InputCheck name={"Privado"}  event={this.checkButton} s={6}/>
                            </div>
-                               <button className="btn waves-effect waves-light" type="submit" name="action">Submit
+                               <button className="btn waves-effect waves-light" type="submit" name="action" onClick={(e) => this.sendForm(e)}>
+                                   Submit
                                    <i className="material-icons right">send</i>
                                </button>
                            </form>
@@ -116,26 +84,79 @@ class Upload extends Component {
           )     
 
      }
-     componentDidMount(){
-         getTipoDoc().then((data) => {
-             this.setState({"tipoDoc": data}) ;
-         });
-         getAmenaza().then( (data)  =>{
-             this.setState({"amenaza": data}) ;
-         });
-         getCredibilidad().then( (data)  =>{
-             this.setState({"credibilidad": data}) ;
-         });
-         getExactitud().then((data) => {
-             this.setState({"exactitud": data});
-         });
-         getFactorInestabilidad().then((data) => {
-             this.setState({"factoresInestabilidad": data});
-         });
-         getClasificacion().then((data) => {
-             this.setState({"clasificacion": data});
-         });
-         M.AutoInit();
+     checkButton(e){
+          if (e.target.id == "Publico"){
+              var privado = document.getElementById("Privado");
+              privado.checked = false
+          }
+         else if (e.target.id == "Privado"){
+             var publico = document.getElementById("Publico");
+              publico.checked = false
+         }
+     }
+
+
+    /**
+     *Invocacion a cada uno de los servicios , se toma la data que entrega el servicios y
+     * se hace el SET ala variable del estado
+     */
+     async serviceCaller (){
+         var tipoDoc = await getTipoDoc();
+         var amenaza = await getAmenaza();
+         var credibilidad = await getCredibilidad();
+         var exactitud = await getExactitud();
+         var factoresInestabilidad = await getFactorInestabilidad();
+         var clasificacion = await getClasificacion();
+
+         this.setState(
+             { tipoDoc,
+                    amenaza,
+                    credibilidad,
+                    exactitud,
+                    factoresInestabilidad,
+                    clasificacion
+             });
+         //console.log(tipoDoc,amenaza,credibilidad,exactitud,factoresInestabilidad,clasificacion);
+        M.AutoInit();
+     }
+
+
+
+     async sendForm(e){
+         e.preventDefault();
+        console.log("ENTRA ");
+        var inputFile = document.getElementById("uploadFile");
+
+        var tipoDoc = document.getElementById("tipoDoc");
+        var valTipoDoc = tipoDoc.options[tipoDoc.selectedIndex].value;
+
+        var amenaza = document.getElementById("amenaza");
+        var valAmenaza = amenaza.options[amenaza.selectedIndex].value;
+
+        var credibilidad = document.getElementById("credibilidad");
+        var valCredibilidad = credibilidad.options[credibilidad.selectedIndex].value;
+
+        var exactitud = document.getElementById("exactitud");
+        var valExactitud = exactitud.options[exactitud.selectedIndex].value;
+
+        var factoresInestabilidad = document.getElementById("factoresInestabilidad");
+        var valFactoresInestabilidad = factoresInestabilidad.options[factoresInestabilidad.selectedIndex].value;
+
+        var clasificacion = document.getElementById("clasificacion");
+        var valClasificacion = clasificacion.options[clasificacion.selectedIndex].value;
+
+        postForm(inputFile.files[0],
+            {
+                "form": {
+                "idTipoDoc": valTipoDoc,
+                "amenaza": valAmenaza,//multiple
+                "credibilidad":valCredibilidad,
+                "exactitud": valExactitud,
+                "factoresInestabilidad": valFactoresInestabilidad,// Multiple
+                "clasificacion":valClasificacion
+                }
+            });
+        console.log(valTipoDoc, valAmenaza, valCredibilidad, valExactitud, valFactoresInestabilidad, valClasificacion);
      }
 }
 

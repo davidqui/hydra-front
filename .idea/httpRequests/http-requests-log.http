@@ -2,6 +2,28 @@ GET http://localhost:9394/clasificacion
 Accept: */*
 Cache-Control: no-cache
 
+<> 2018-12-13T022738.200.json
+
+###
+
+GET http://10.23.228.152:9394/clasificacion
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-12-13T021808.502.html
+
+###
+
+GET 10.23.228.152:9394/clasificacion
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+GET http://localhost:9394/clasificacion
+Accept: */*
+Cache-Control: no-cache
+
 <> 2018-12-12T115324.200.json
 
 ###
