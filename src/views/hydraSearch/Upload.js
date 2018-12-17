@@ -1,5 +1,5 @@
-import React,{Component} from 'react'
-import {InputSelec,InputCheck} from '../../components/Forms'
+import React,{Component} from 'react';
+import {InputSelec,InputCheck} from '../../components/Forms';
 /**
  * Import a los servicios
  */
@@ -12,7 +12,7 @@ import  {getTipoDoc,
           postForm,
          getTipoDocDummy} from '../../services/uploadFormServ'
 import M from "materialize-css"
-
+import SelectorUI from  '../../components/FormUi';
 
 class Upload extends Component {
      constructor(){
@@ -64,7 +64,7 @@ class Upload extends Component {
                                    <input className="file-path validate" type="text"/>
                                </div>
                            </div>
-                               <InputSelec id={"tipoDoc"} descripcion ={"Tipo de Documento"}  campo={"tipo"} data={tipoDoc}  s={6} />
+                               <InputSelec id={"tipoDoc"} descripcion ={"Tipo de Documentooooooooo"}  campo={"tipo"} data={tipoDoc}  s={6} />
                                <InputSelec id={"amenaza"} descripcion ={"Amenaza"} campo={"tipo"} data={amenaza} s={6} multiple={true}/>
                                <InputSelec id={"credibilidad"} descripcion ={"Evaluacion de la Fuente"} campo={"nombre"} data={credibilidad} s={12}/>
                                <InputSelec id={"exactitud"} descripcion ={"Evaluacion de la Informacion"} campo={"nombre"} data={exactitud} s={12}/>
@@ -74,10 +74,13 @@ class Upload extends Component {
                                <InputCheck name={"Publico"}  event={this.checkButton} s={6}/>
                                <InputCheck name={"Privado"}  event={this.checkButton} s={6}/>
                            </div>
+
                                <button className="btn waves-effect waves-light" type="submit" name="action" onClick={(e) => this.sendForm(e)}>
                                    Submit
                                    <i className="material-icons right">send</i>
                                </button>
+
+                           <SelectorUI name={"My selector"} menuItems={{1:"primero",2:"segundo",3:"tercero",4:"cuarto",5:"quinto",}} />
                            </form>
                     </div>
                </div>

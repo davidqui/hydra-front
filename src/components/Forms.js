@@ -18,7 +18,7 @@ export class  InputSelec  extends Component{
               <div className ={"col s"+s}>
                    <div  className={classs} >
                         <select id={this.props.id}  onChange={this.chageMethod} multiple={multiple}   >
-                            <option value="default" selected disabled >Seleccione una Opción</option>
+                            <option value="default" disabled >Seleccione una Opción</option>
                               {items}
                         </select>
                         <label >{this.props.descripcion}</label>
