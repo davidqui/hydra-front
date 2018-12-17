@@ -14,6 +14,18 @@ import  {getTipoDoc,
 import M from "materialize-css"
 import SelectorUI from  '../../components/FormUi';
 
+const formField = {
+    "tipoDoc" :             { "id":"idTipoDoc" , "s":8,"descripcion":"Tipo de Documento"},
+    "amenaza":              { "id":"idAmenaza" , "s":8,"descripcion":"Tipo de Amenaza"},
+    "credibilidad":         { "id":"idCredibilidad" , "s":8,"descripcion":"Evaluacion de la Fuente"},
+    "exactitud":            { "id":"idExactitud" , "s":8,"descripcion":"Evaluacion de la Informacion"},
+    "factoresInestabilidad":{ "id":"idFactores" , "s":8,"descripcion":"Factores de Inestabilidad"},
+    "clasificacion":        { "id":"idClasificacion" , "s":8,"descripcion":"Clasificacion"}
+
+}
+
+
+
 class Upload extends Component {
      constructor(){
          super();
@@ -29,7 +41,6 @@ class Upload extends Component {
                "exactitud":[],
                "clasificacion":[],
                "factoresInestabilidad" :[],
-
 
               "dummy":{}
           };
@@ -64,12 +75,24 @@ class Upload extends Component {
                                    <input className="file-path validate" type="text"/>
                                </div>
                            </div>
-                               <InputSelec id={"tipoDoc"} descripcion ={"Tipo de Documentooooooooo"}  campo={"tipo"} data={tipoDoc}  s={6} />
-                               <InputSelec id={"amenaza"} descripcion ={"Amenaza"} campo={"tipo"} data={amenaza} s={6} multiple={true}/>
-                               <InputSelec id={"credibilidad"} descripcion ={"Evaluacion de la Fuente"} campo={"nombre"} data={credibilidad} s={12}/>
-                               <InputSelec id={"exactitud"} descripcion ={"Evaluacion de la Informacion"} campo={"nombre"} data={exactitud} s={12}/>
-                               <InputSelec id={"factoresInestabilidad"} descripcion ={"Factores de Inestabilidad"} campo={"nombre"} data={factoresInestabilidad} s={12} multiple={true}/>
-                               <InputSelec id={"clasificacion"} descripcion ={"Clasificacion"} campo={"tipo"} data={clasificacion} s={12}/>
+
+                           <InputSelec id={"tipoDoc"} descripcion ={"Tipo de Documentooooooooo"}  campo={"tipo"} data={tipoDoc}  s={6} />
+                           <InputSelec id={"amenaza"} descripcion ={"Amenaza"} campo={"tipo"} data={amenaza} s={6} multiple={true}/>
+                           <InputSelec id={"credibilidad"} descripcion ={"Evaluacion de la Fuente"} campo={"nombre"} data={credibilidad} s={12}/>
+                           <InputSelec id={"exactitud"} descripcion ={"Evaluacion de la Informacion"} campo={"nombre"} data={exactitud} s={12}/>
+                           <InputSelec id={"factoresInestabilidad"} descripcion ={"Factores de Inestabilidad"} campo={"nombre"} data={factoresInestabilidad} s={12} multiple={true}/>
+                           <InputSelec id={"clasificacion"} descripcion ={"Clasificacion"} campo={"tipo"} data={clasificacion} s={12}/>
+
+
+                           <SelectorUI name={"tipoDoc"} options={formField["tipoDoc"]} data={tipoDoc}  service={getTipoDoc}/>
+                           <SelectorUI name={"amenaza"} options={formField["amenaza"]} data={amenaza}  service={getAmenaza}/>
+
+                           <SelectorUI name={"credibilidad"} options={formField["credibilidad"]} data={credibilidad}  service={getCredibilidad}/>
+                           <SelectorUI name={"exactitud"} options={formField["exactitud"]} data={exactitud}  service={getCredibilidad}/>
+
+                           <SelectorUI name={"factoresInestabilidad"} options={formField["factoresInestabilidad"]} data={factoresInestabilidad}  service={getFactorInestabilidad}/>
+                           <SelectorUI name={"clasificacion"} options={formField["clasificacion"]} data={clasificacion}  service={getClasificacion}/>
+
                            <div className="row">
                                <InputCheck name={"Publico"}  event={this.checkButton} s={6}/>
                                <InputCheck name={"Privado"}  event={this.checkButton} s={6}/>
@@ -80,7 +103,7 @@ class Upload extends Component {
                                    <i className="material-icons right">send</i>
                                </button>
 
-                           <SelectorUI name={"My selector"} menuItems={{1:"primero",2:"segundo",3:"tercero",4:"cuarto",5:"quinto",}} />
+
                            </form>
                     </div>
                </div>
